@@ -24,8 +24,6 @@
       "type": "string",
       "defaultValue": "12-SP3",
       "allowedValues": [
-        "12",
-        "12-SP1",
         "12-SP2",
         "12-SP3"
       ],
@@ -136,7 +134,7 @@
         "storageProfile": {
           "imageReference": {
             "publisher": "SUSE",
-            "offer": "SLES",
+            "offer": "SLES-SAP-BYOS",
             "sku": "[parameters('suseOSVersion')]",
             "version": "latest"
           },
