@@ -24,7 +24,6 @@
       "type": "string",
       "defaultValue": "12-SP3",
       "allowedValues": [
-        "12-SP2",
         "12-SP3"
       ],
       "metadata": {
