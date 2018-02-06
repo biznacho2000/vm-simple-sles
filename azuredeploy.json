@@ -151,7 +151,7 @@
           "dataDisks": [
             {
               "name": "datadisk1",
-              "diskSizeGB": 100,
+              "diskSizeGB": 200,
               "lun": 0,
               "vhd": {
                 "uri": "[concat(reference(concat('Microsoft.Storage/storageAccounts/', variables('storageAccountName')), '2017-06-01').primaryEndpoints.blob, 'vhds/datadisk.vhd')]"
