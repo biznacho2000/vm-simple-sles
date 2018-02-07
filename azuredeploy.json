@@ -29,6 +29,19 @@
       "metadata": {
         "description": "The SLES version for the VM. This will pick the latest available image of this given SLES version."
       }
+    },
+    "vmsize":{
+      "allowedValues": [
+        "Standard_GS5",
+        "Standard_M64s",
+        "Standard_M64ms",
+        "Standard_M128s",
+        "Standard_M128ms",
+        "Standard_E16s_v3",
+        "Standard_E32s_v3",
+        "Standard_E64s_v3"
+    ],
+    "type": "string"
     }
   },
   "variables": {
@@ -123,7 +136,7 @@
       ],
       "properties": {
         "hardwareProfile": {
-          "vmSize": "Standard_GS5"
+          "vmSize": "[parameters('vmsize')]"
         },
         "osProfile": {
           "computerName": "[variables('vmName')]",
