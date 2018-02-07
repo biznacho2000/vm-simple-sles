@@ -133,7 +133,7 @@
         "storageProfile": {
           "imageReference": {
             "publisher": "SUSE",
-            "offer": "SLES-SAP-BYOS",
+            "offer": "SLES-SAP",
             "sku": "[parameters('suseOSVersion')]",
             "version": "latest"
           },
