@@ -36,6 +36,9 @@
         "description": "The SLES version for the VM. This will pick the latest available image of this given SLES version."
       }
     },
+    "availabilitySetName": {
+      "type": "string"
+    },
     "vmsize":{
       "allowedValues": [
         "Standard_GS5",
@@ -157,6 +160,7 @@
           },
           "osDisk": {
             "name": "osdisk",
+            "diskSizeGB": 500,
             "vhd": {
               "uri": "[concat(reference(concat('Microsoft.Storage/storageAccounts/', variables('storageAccountName')), '2017-06-01').primaryEndpoints.blob, 'vhds/osdisk.vhd')]"
             },
