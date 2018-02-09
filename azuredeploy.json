@@ -164,11 +164,11 @@
             "caching": "ReadWrite",
             "createOption": "FromImage"
           },
-          "osDisk": {
+          "osDisk1": {
             "name": "osdisk1",
             "diskSizeGB": 50,
             "vhd": {
-              "uri": "[concat(reference(concat('Microsoft.Storage/storageAccounts/', variables('storageAccountName')), '2017-06-01').primaryEndpoints.blob, 'vhds/osdisk.vhd')]"
+              "uri": "[concat(reference(concat('Microsoft.Storage/storageAccounts/', variables('storageAccountName')), '2017-06-01').primaryEndpoints.blob, 'vhds/osdisk1.vhd')]"
             },
             "caching": "ReadWrite",
             "createOption": "FromImage"
