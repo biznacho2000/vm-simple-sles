@@ -56,12 +56,12 @@
   },
   "variables": {
     "storageAccountName": "[concat(uniquestring(resourceGroup().id), 'slesvm')]",
-    "nicName": "[concat(parameters('vmName'), '-nic')",
+    "nicName": "[concat(parameters('vmName'), 'nic')",
     "addressPrefix": "10.0.0.0/16",
     "subnetName": "Subnet",
     "subnetPrefix": "10.0.0.0/24",
-    "publicIPAddressName": "[concat(parameters('vmName'), '-IP')",
-    "virtualNetworkName": "[concat(parameters('vmName'), '-VNET')",
+    "publicIPAddressName": "[concat(parameters('vmName'), 'IP')",
+    "virtualNetworkName": "[concat(parameters('vmName'), 'VNET')",
     "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets/', variables('virtualNetworkName'), variables('subnetName'))]"
   },
   "resources": [
