@@ -28,13 +28,17 @@
     },
     "suseOSVersion": {
       "type": "string",
-      "defaultValue": "12-SP3",
+      "defaultValue": "12-SP2",
       "allowedValues": [
+        "12-SP2",
         "12-SP3"
       ],
       "metadata": {
         "description": "The SLES version for the VM. This will pick the latest available image of this given SLES version."
       }
+    },
+    "availabilitySetName": {
+      "type": "string"
     },
     "vmsize":{
       "allowedValues": [
@@ -167,19 +171,10 @@
           "dataDisks": [
             {
               "name": "datadisk1",
-              "diskSizeGB": 50,
+              "diskSizeGB": 500,
               "lun": 0,
               "vhd": {
-                "uri": "[concat(reference(concat('Microsoft.Storage/storageAccounts/', variables('storageAccountName')), '2017-06-01').primaryEndpoints.blob, 'vhds/datadisk1.vhd')]"
-              },
-              "createOption": "Empty"
-            },
-            {
-              "name": "datadisk2",
-              "diskSizeGB": 200,
-              "lun": 1,
-              "vhd": {
-                "uri": "[concat(reference(concat('Microsoft.Storage/storageAccounts/', variables('storageAccountName')), '2017-06-01').primaryEndpoints.blob, 'vhds/datadisk2.vhd')]"
+                "uri": "[concat(reference(concat('Microsoft.Storage/storageAccounts/', variables('storageAccountName')), '2017-06-01').primaryEndpoints.blob, 'vhds/datadisk.vhd')]"
               },
               "createOption": "Empty"
             }
