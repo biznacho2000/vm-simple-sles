@@ -207,3 +207,28 @@
     }
   }
 }
+
+"resources": [
+  {
+    "name": "scriptextension",
+    "type": "extensions",
+    "location": "[resourceGroup().location]",
+    "apiVersion": "[variables('api-version-vm')]",
+    "dependsOn": [
+      "[concat('Microsoft.Compute/virtualMachines/', parameters('vmName'))]"
+    ],
+    "properties": {
+      "publisher": "Microsoft.Azure.Extensions",
+      "type": "CustomScript",
+      "typeHandlerVersion": "2.0",
+      "autoUpgradeMinorVersion": true,
+      "settings": {
+        "fileUris": [
+          "https://raw.githubusercontent.com/shortkidd610/vm-simple-sles/master/azureos.sh"
+        ],
+        "commandToExecute": "sh azureos.sh"
+      }
+    }
+  }
+]
+}
