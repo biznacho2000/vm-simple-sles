@@ -20,12 +20,6 @@
         "description": "Password for the Virtual Machine."
       }
     },
-    "dnsLabelPrefix": {
-      "type": "string",
-      "metadata": {
-        "description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
-      }
-    },
     "suseOSVersion": {
       "type": "string",
       "defaultValue": "12-SP2",
@@ -36,9 +30,6 @@
       "metadata": {
         "description": "The SLES version for the VM. This will pick the latest available image of this given SLES version."
       }
-    },
-    "availabilitySetName": {
-      "type": "string"
     },
     "vmsize": {
       "allowedValues": [
