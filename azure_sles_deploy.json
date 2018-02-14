@@ -214,7 +214,7 @@
               "fileUris": [
                 "https://raw.githubusercontent.com/shortkidd610/vm-simple-sles/master/azureos_min.sh"
               ],
-              "commandToExecute": "[concat('sh ', 'azureos_min.sh')]"
+              "commandToExecute": "azureos_min.sh"
             }
           }
         }

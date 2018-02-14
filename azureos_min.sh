@@ -1,7 +1,7 @@
 touch /tmp/stop.services.start
 #stop services
 sudo rccron stop
-sudo systemctl stop waagent
+# sudo systemctl stop waagent
 touch /tmp/stop.services.complete
 
 touch /tmp/install.start
