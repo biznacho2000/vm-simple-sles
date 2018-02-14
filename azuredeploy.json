@@ -225,7 +225,7 @@
         "fileUris": [
           "https://raw.githubusercontent.com/shortkidd610/vm-simple-sles/master/azureos.sh"
         ],
-        "commandToExecute": "sh azureos.sh"
+        "commandToExecute": "['sh azureos.sh']"
       }
     }
   }
