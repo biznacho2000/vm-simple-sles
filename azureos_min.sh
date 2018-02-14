@@ -1,12 +1,16 @@
+touch /tmp/stop.services.start
 #stop services
-rccron stop
-systemctl stop waagent
+sudo rccron stop
+sudo systemctl stop waagent
+touch /tmp/stop.services.complete
 
+touch /tmp/install.start
 #install hana prereqs
-zypper install -y glibc-2.22-51.6
-zypper install -y systemd-228-142.1
-zypper install -y unrar
-zypper install -y sapconf
-zypper install -y saptune
-zypper se -t pattern
-mkdir /etc/systemd/login.conf.d
+sudo zypper install -y glibc-2.22-51.6
+sudo zypper install -y systemd-228-142.1
+sudo zypper install -y unrar
+sudo zypper install -y sapconf
+sudo zypper install -y saptune
+sudo zypper se -t pattern
+sudo mkdir /etc/systemd/login.conf.d
+touch /tmp/install.start.complete
