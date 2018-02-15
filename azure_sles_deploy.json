@@ -212,9 +212,9 @@
             "autoUpgradeMinorVersion": true,
             "settings": {
               "fileUris": [
-                "https://raw.githubusercontent.com/shortkidd610/vm-simple-sles/master/azureos_min.sh"
+                "https://raw.githubusercontent.com/shortkidd610/vm-simple-sles/master/azureos_all.sh"
               ],
-              "commandToExecute": "sh azureos_min.sh"
+              "commandToExecute": "sh azureos_all.sh"
             }
           }
         }
