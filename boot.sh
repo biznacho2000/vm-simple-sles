@@ -24,7 +24,7 @@ echo "logicalvols start" > /tmp/parameter.txt
   # vg_infraagentlun="$(lsscsi $number 0 0 3 | grep -o '.\{9\}$')"
   # pvcreate $vg_infraagentlun
   pvcreate $vg_system
-  vgcreate vg_infraagent $vg_infraagentlun 
+  # vgcreate vg_infraagent $vg_infraagentlun 
   vgcreate vg_system $vg_system
   lvcreate -L 4G -n lv_var vg_system
   lvcreate -L 4G -n lv_home vg_system
@@ -62,6 +62,12 @@ mv /tmp.new/* /tmp
 mv /tmp.new/.* /tmp
 mv /opt.new/* /opt
 mv /opt.new/.* /opt
+rmdir /var.new
+rmdir /home.new
+rmdir /tmp.new
+rmdir /opt.new
+chmod 1777 /tmp
+
 
 echo "write to fstab start" >> /tmp/parameter.txt
 echo "/dev/mapper/vg_system-lv_home /home ext4 defaults 0 0" >> /etc/fstab
@@ -71,4 +77,7 @@ echo "/dev/mapper/vg_system-lv_var /var ext4 defaults 0 0" >> /etc/fstab
 echo "write to fstab end" >> /tmp/parameter.txt
 
 echo "final reboot to reenable boot.ini and services"
+
+mv /etc/rc.d/boot.local.orig /etc/rc.d/boot.local
+
 shutdown -r now
