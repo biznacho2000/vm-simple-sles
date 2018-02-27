@@ -17,9 +17,10 @@ mv /home /home.new
 mv /tmp /tmp.new
 mv /opt /opt.new
 
-number="$(lsscsi [*] 0 0 0| cut -c2)"
 
 echo "logicalvols start" > /usr/local/buildscript/parameter.txt
+  bootdisk="$(df | grep boot | cut -c6,7,8)"
+  number="$(lsscsi [*] 0 0 0| grep -v sr0| grep -v $bootdisk| cut -c2)"
   vg_system="$(lsscsi $number 0 0 0 | grep -o '.\{9\}$')"
   # vg_infraagentlun="$(lsscsi $number 0 0 3 | grep -o '.\{9\}$')"
   # pvcreate $vg_infraagentlun
