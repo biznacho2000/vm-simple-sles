@@ -27,9 +27,10 @@ echo "write to audit config end" >> /tmp/audit.txt
 echo "update boot.ini"
 
 mv /etc/rc.d/boot.local /etc/rc.d/boot.local.orig
-cd /tmp
+mkdir /usr/local/buildscript
+cd /usr/local/buildscript
 /usr/bin/wget --quiet "https://raw.githubusercontent.com/shortkidd610/vm-simple-sles/master/boot.sh"
-echo "sh /tmp/boot.sh > /tmp/boot.sh.log 2>&1" > /etc/rc.d/boot.local
+echo "sh /usr/local/buildscript/boot.sh >> /usr/local/buildscript/boot.sh.log 2>&1" > /etc/rc.d/boot.local
 chmod 744 /etc/rc.d/boot.local
 
 echo "final reboot to reenable boot.ini and services"

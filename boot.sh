@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash
 
 #stop services
 sudo rccron stop
@@ -19,12 +19,12 @@ mv /opt /opt.new
 
 number="$(lsscsi [*] 0 0 0| cut -c2)"
 
-echo "logicalvols start" > /tmp/parameter.txt
+echo "logicalvols start" > /usr/local/buildscript/parameter.txt
   vg_system="$(lsscsi $number 0 0 0 | grep -o '.\{9\}$')"
   # vg_infraagentlun="$(lsscsi $number 0 0 3 | grep -o '.\{9\}$')"
   # pvcreate $vg_infraagentlun
   pvcreate $vg_system
-  # vgcreate vg_infraagent $vg_infraagentlun 
+  # vgcreate vg_infraagent $vg_infraagentlun
   vgcreate vg_system $vg_system
   lvcreate -L 4G -n lv_var vg_system
   lvcreate -L 4G -n lv_home vg_system
@@ -35,10 +35,10 @@ echo "logicalvols start" > /tmp/parameter.txt
   mkfs.ext4 /dev/vg_system/lv_tmp
   mkfs.ext4 /dev/vg_system/lv_opt
 
-echo "logicalvols end" >> /tmp/parameter.txt
+echo "logicalvols end" >> /usr/local/buildscript/parameter.txt
 
 
-echo "mounthanashared start" >> /tmp/parameter.txt
+echo "mounthanashared start" >> /usr/local/buildscript/parameter.txt
 
 mkdir /var
 mkdir /home
@@ -51,7 +51,7 @@ mount -t ext4 /dev/vg_system/lv_tmp /tmp
 mount -t ext4 /dev/vg_system/lv_opt /opt
 
 mkdir /hana/data/sapbits
-echo "mounthanashared end" >> /tmp/parameter.txt
+echo "mounthanashared end" >> /usr/local/buildscript/parameter.txt
 
 #data moves
 mv /var.new/* /var
