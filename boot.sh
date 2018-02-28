@@ -12,11 +12,6 @@ sedcmd4="s/Provisioning.ExecuteCustomData=n/Provisioning.ExecuteCustomData=y/g"
 cat /etc/waagent.conf | sed $sedcmd | sed $sedcmd2 > /etc/waagent.conf.new
 cp -f /etc/waagent.conf.new /etc/waagent.conf
 
-mv /var /var.new
-mv /home /home.new
-mv /tmp /tmp.new
-mv /opt /opt.new
-
 
 echo "logicalvols start" > /usr/local/buildscript/parameter.txt
   bootdisk="$(df | grep boot | cut -c6,7,8)"
@@ -41,41 +36,46 @@ echo "logicalvols end" >> /usr/local/buildscript/parameter.txt
 
 echo "mounthanashared start" >> /usr/local/buildscript/parameter.txt
 
-mkdir /var
-mkdir /home
-mkdir /tmp
-mkdir /opt
+#mv /var /var.new
+#mv /home /home.new
+#mv /tmp /tmp.new
+#mv /opt /opt.new
+#
+#mkdir /var
+#mkdir /home
+#mkdir /tmp
+#mkdir /opt
 
-mount -t ext4 /dev/vg_system/lv_var /var
-mount -t ext4 /dev/vg_system/lv_home /home
-mount -t ext4 /dev/vg_system/lv_tmp /tmp
-mount -t ext4 /dev/vg_system/lv_opt /opt
+#mount -t ext4 /dev/vg_system/lv_var /var
+#mount -t ext4 /dev/vg_system/lv_home /home
+#mount -t ext4 /dev/vg_system/lv_tmp /tmp
+#mount -t ext4 /dev/vg_system/lv_opt /opt
 
-mkdir /hana/data/sapbits
-echo "mounthanashared end" >> /usr/local/buildscript/parameter.txt
-
+#mkdir /hana/data/sapbits
+#echo "mounthanashared end" >> /usr/local/buildscript/parameter.txt
+#
 #data moves
-mv /var.new/* /var
-mv /var.new/.* /var
-mv /home.new/* /home
-mv /home.new.* /home
-mv /tmp.new/* /tmp
-mv /tmp.new/.* /tmp
-mv /opt.new/* /opt
-mv /opt.new/.* /opt
-rmdir /var.new
-rmdir /home.new
-rmdir /tmp.new
-rmdir /opt.new
-chmod 1777 /tmp
+#mv /var.new/* /var
+#mv /var.new/.* /var
+#mv /home.new/* /home
+#mv /home.new.* /home
+#mv /tmp.new/* /tmp
+#mv /tmp.new/.* /tmp
+#mv /opt.new/* /opt
+#mv /opt.new/.* /opt
+#rmdir /var.new
+#rmdir /home.new
+#rmdir /tmp.new
+#rmdir /opt.new
+#chmod 1777 /tmp
 
 
-echo "write to fstab start" >> /tmp/parameter.txt
-echo "/dev/mapper/vg_system-lv_home /home ext4 defaults,nofail 0 0" >> /etc/fstab
-echo "/dev/mapper/vg_system-lv_tmp /tmp ext4 defaults,nofail 0 0" >> /etc/fstab
-echo "/dev/mapper/vg_system-lv_opt /opt ext4 defaults,nofail 0 0" >> /etc/fstab
-echo "/dev/mapper/vg_system-lv_var /var ext4 defaults,nofail 0 0" >> /etc/fstab
-echo "write to fstab end" >> /tmp/parameter.txt
+#echo "write to fstab start" >> /tmp/parameter.txt
+#echo "/dev/mapper/vg_system-lv_home /home ext4 defaults,nofail 0 0" >> /etc/fstab
+#echo "/dev/mapper/vg_system-lv_tmp /tmp ext4 defaults,nofail 0 0" >> /etc/fstab
+#echo "/dev/mapper/vg_system-lv_opt /opt ext4 defaults,nofail 0 0" >> /etc/fstab
+#echo "/dev/mapper/vg_system-lv_var /var ext4 defaults,nofail 0 0" >> /etc/fstab
+#echo "write to fstab end" >> /tmp/parameter.txt
 
 echo "final reboot to reenable boot.ini and services"
 
