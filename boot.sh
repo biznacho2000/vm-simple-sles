@@ -71,10 +71,10 @@ chmod 1777 /tmp
 
 
 echo "write to fstab start" >> /tmp/parameter.txt
-echo "/dev/mapper/vg_system-lv_home /home ext4 defaults 0 0" >> /etc/fstab
-echo "/dev/mapper/vg_system-lv_tmp /tmp ext4 defaults 0 0" >> /etc/fstab
-echo "/dev/mapper/vg_system-lv_opt /opt ext4 defaults 0 0" >> /etc/fstab
-echo "/dev/mapper/vg_system-lv_var /var ext4 defaults 0 0" >> /etc/fstab
+echo "/dev/mapper/vg_system-lv_home /home ext4 defaults,nofail,nobootwait 0 0" >> /etc/fstab
+echo "/dev/mapper/vg_system-lv_tmp /tmp ext4 defaults,nofail,nobootwait 0 0" >> /etc/fstab
+echo "/dev/mapper/vg_system-lv_opt /opt ext4 defaults,nofail,nobootwait 0 0" >> /etc/fstab
+echo "/dev/mapper/vg_system-lv_var /var ext4 defaults,nofail,nobootwait 0 0" >> /etc/fstab
 echo "write to fstab end" >> /tmp/parameter.txt
 
 echo "final reboot to reenable boot.ini and services"
