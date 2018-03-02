@@ -36,33 +36,35 @@ echo "logicalvols end" >> /usr/local/buildscript/parameter.txt
 
 echo "mounthanashared start" >> /usr/local/buildscript/parameter.txt
 
-#mv /var /var.new
-#mv /home /home.new
-#mv /tmp /tmp.new
-#mv /opt /opt.new
-#
-#mkdir /var
-#mkdir /home
-#mkdir /tmp
-#mkdir /opt
+mv /var /var.new
+mv /home /home.new
+mv /tmp /tmp.new
+mv /opt /opt.new
 
-#mount -t ext4 /dev/vg_system/lv_var /var
-#mount -t ext4 /dev/vg_system/lv_home /home
-#mount -t ext4 /dev/vg_system/lv_tmp /tmp
-#mount -t ext4 /dev/vg_system/lv_opt /opt
+mkdir /var
+mkdir /home
+mkdir /tmp
+mkdir /opt
 
-#mkdir /hana/data/sapbits
-#echo "mounthanashared end" >> /usr/local/buildscript/parameter.txt
+mount -t ext4 /dev/vg_system/lv_var /var
+mount -t ext4 /dev/vg_system/lv_home /home
+mount -t ext4 /dev/vg_system/lv_tmp /tmp
+mount -t ext4 /dev/vg_system/lv_opt /opt
+
+sleep 5
+
+mkdir -p /hana/data/sapbits
+echo "mounthanashared end" >> /usr/local/buildscript/parameter.txt
 #
 #data moves
-#mv /var.new/* /var
-#mv /var.new/.* /var
-#mv /home.new/* /home
-#mv /home.new.* /home
-#mv /tmp.new/* /tmp
-#mv /tmp.new/.* /tmp
-#mv /opt.new/* /opt
-#mv /opt.new/.* /opt
+mv /var.new/* /var
+mv /var.new/.* /var
+mv /home.new/* /home
+mv /home.new.* /home
+mv /tmp.new/* /tmp
+mv /tmp.new/.* /tmp
+mv /opt.new/* /opt
+mv /opt.new/.* /opt
 #rmdir /var.new
 #rmdir /home.new
 #rmdir /tmp.new
@@ -70,12 +72,12 @@ echo "mounthanashared start" >> /usr/local/buildscript/parameter.txt
 #chmod 1777 /tmp
 
 
-#echo "write to fstab start" >> /tmp/parameter.txt
-#echo "/dev/mapper/vg_system-lv_home /home ext4 defaults,nofail 0 0" >> /etc/fstab
-#echo "/dev/mapper/vg_system-lv_tmp /tmp ext4 defaults,nofail 0 0" >> /etc/fstab
-#echo "/dev/mapper/vg_system-lv_opt /opt ext4 defaults,nofail 0 0" >> /etc/fstab
-#echo "/dev/mapper/vg_system-lv_var /var ext4 defaults,nofail 0 0" >> /etc/fstab
-#echo "write to fstab end" >> /tmp/parameter.txt
+echo "write to fstab start" >> /tmp/parameter.txt
+echo "/dev/mapper/vg_system-lv_home /home ext4 defaults,nofail 0 0" >> /etc/fstab
+echo "/dev/mapper/vg_system-lv_tmp /tmp ext4 defaults,nofail 0 0" >> /etc/fstab
+echo "/dev/mapper/vg_system-lv_opt /opt ext4 defaults,nofail 0 0" >> /etc/fstab
+echo "/dev/mapper/vg_system-lv_var /var ext4 defaults,nofail 0 0" >> /etc/fstab
+echo "write to fstab end" >> /tmp/parameter.txt
 
 echo "final reboot to reenable boot.ini and services"
 
