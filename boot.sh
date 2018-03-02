@@ -65,11 +65,11 @@ mv /tmp.new/* /tmp
 mv /tmp.new/.* /tmp
 mv /opt.new/* /opt
 mv /opt.new/.* /opt
-#rmdir /var.new
-#rmdir /home.new
-#rmdir /tmp.new
-#rmdir /opt.new
-#chmod 1777 /tmp
+rmdir /var.new
+rmdir /home.new
+rmdir /tmp.new
+rmdir /opt.new
+chmod 1777 /tmp
 
 
 echo "write to fstab start" >> /tmp/parameter.txt
@@ -83,4 +83,4 @@ echo "final reboot to reenable boot.ini and services"
 
 mv /etc/rc.d/boot.local.orig /etc/rc.d/boot.local
 
-#shutdown -r now
+shutdown -r 1
