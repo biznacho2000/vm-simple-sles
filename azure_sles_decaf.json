@@ -55,9 +55,8 @@
   "variables": {
     "storageAccountName": "[concat(uniquestring(resourceGroup().id), 'slesvm')]",
     "nicName": "[concat(parameters('vmName'), '-static')]",
-    "subnetName": "Subnet",
-    "publicIPAddressName": "[concat(parameters('vmName'), '-IP')]",
-    "virtualNetworkName": "[concat(parameters('vmName'), '-VNET')]",
+    "subnetName": "C3_SAP-subnet04",
+    "virtualNetworkName": "az-np-westus-sub01-network-vnet",
     "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'), '/subnets/', variables('subnetName'))]",
     "scriptextensionScriptFolder": "CustomScripts",
     "scriptextensionScriptFileName": "scriptextension.sh"
