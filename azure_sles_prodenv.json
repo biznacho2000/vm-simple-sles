@@ -11,7 +11,7 @@
     "PrimaryStaticIP": {
       "type": "string",
       "metadata": {
-        "description": "IP address for host"
+        "description": "IP Address for the HANA VM when Static IP Allocation Method has been selected"
       },
       "defaultValue": "10.208.20.100"
     },
@@ -55,19 +55,13 @@
   "variables": {
     "storageAccountName": "[concat(uniquestring(resourceGroup().id), 'slesvm')]",
     "nicName": "[concat(parameters('vmName'), '-static')]",
-<<<<<<< HEAD
-    "virtualNetworkName": "[concat(parameters('vmName'), '-VNET')]",
-=======
-    "addressPrefix": "10.208.20.0/16",
     "subnetName": "Subnet",
-    "subnetPrefix": "10.208.20.0/24",
     "publicIPAddressName": "[concat(parameters('vmName'), '-IP')]",
     "virtualNetworkName": "[concat(parameters('vmName'), '-VNET')]",
     "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets/', variables('virtualNetworkName'), variables('subnetName'))]",
     "scriptextensionScriptFolder": "CustomScripts",
     "scriptextensionScriptFileName": "scriptextension.sh"
   },
->>>>>>> parent of 0928411... 47
   "resources": [
     {
       "type": "Microsoft.Storage/storageAccounts",
