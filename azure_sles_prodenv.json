@@ -55,7 +55,19 @@
   "variables": {
     "storageAccountName": "[concat(uniquestring(resourceGroup().id), 'slesvm')]",
     "nicName": "[concat(parameters('vmName'), '-static')]",
+<<<<<<< HEAD
     "virtualNetworkName": "[concat(parameters('vmName'), '-VNET')]",
+=======
+    "addressPrefix": "10.208.20.0/16",
+    "subnetName": "Subnet",
+    "subnetPrefix": "10.208.20.0/24",
+    "publicIPAddressName": "[concat(parameters('vmName'), '-IP')]",
+    "virtualNetworkName": "[concat(parameters('vmName'), '-VNET')]",
+    "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets/', variables('virtualNetworkName'), variables('subnetName'))]",
+    "scriptextensionScriptFolder": "CustomScripts",
+    "scriptextensionScriptFileName": "scriptextension.sh"
+  },
+>>>>>>> parent of 0928411... 47
   "resources": [
     {
       "type": "Microsoft.Storage/storageAccounts",
@@ -67,6 +79,29 @@
       },
       "kind": "Storage"
     },
+    {
+      "type": "Microsoft.Network/virtualNetworks",
+      "apiVersion": "2017-09-01",
+      "name": "[variables('virtualNetworkName')]",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": [
+            "[variables('addressPrefix')]"
+         ]
+        },
+        "subnets": [
+          {
+            "name": "[variables('subnetName')]",
+            "properties": {
+              "addressPrefix": "[variables('subnetPrefix')]"
+            }
+          }
+        ]
+      }
+    },
+
+
     {
       "apiVersion": "2017-09-01",
       "type": "Microsoft.Network/networkInterfaces",
