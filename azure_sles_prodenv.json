@@ -55,11 +55,7 @@
   "variables": {
     "storageAccountName": "[concat(uniquestring(resourceGroup().id), 'slesvm')]",
     "nicName": "[concat(parameters('vmName'), '-static')]",
-    "subnetName": "Subnet",
-    "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets/', variables('virtualNetworkName'), variables('subnetName'))]",
-    "scriptextensionScriptFolder": "CustomScripts",
-    "scriptextensionScriptFileName": "scriptextension.sh"
-  },
+    "virtualNetworkName": "[concat(parameters('vmName'), '-VNET')]",
   "resources": [
     {
       "type": "Microsoft.Storage/storageAccounts",
@@ -76,55 +72,9 @@
       "type": "Microsoft.Network/networkInterfaces",
       "name": "[concat(parameters('vmName'),'-static')]",
       "location": "[resourceGroup().location]",
-      "properties": {
         "ipConfigurations": [
-            {
-              "name": "Primary",
-              "properties": {
-                "primary": true,
-                "privateIPAllocationMethod": "Static",
-                "privateIPAddress": "[parameters('PrimaryStaticIP')]",
-                "subnet": {
-                  "id": "[variables('subnetRef')]"
-                }
-              }
-            }
-          ]
-      }
-    },
-    {
-      "type": "Microsoft.Compute/virtualMachines",
-      "apiVersion": "2017-03-30",
-      "name": "[parameters('vmName')]",
-      "location": "[resourceGroup().location]",
-      "dependsOn": [
-        "[variables('storageAccountName')]",
-        "[variables('nicName')]"
       ],
       "properties": {
-        "hardwareProfile": {
-          "vmSize": "[parameters('vmsize')]"
-        },
-        "osProfile": {
-          "computerName": "[parameters('vmName')]",
-          "adminUsername": "[parameters('adminUsername')]",
-          "adminPassword": "[parameters('adminPassword')]"
-        },
-        "storageProfile": {
-          "imageReference": {
-            "publisher": "SUSE",
-            "offer": "SLES-SAP",
-            "sku": "[parameters('suseOSVersion')]",
-            "version": "2018.01.04"
-          },
-          "osDisk": {
-            "name": "[concat(parameters('vmName'), '-osdisk')]",
-            "diskSizeGB": 500,
-            "vhd": {
-              "uri": "[concat(reference(concat('Microsoft.Storage/storageAccounts/', variables('storageAccountName')), '2017-06-01').primaryEndpoints.blob, 'vhds/',parameters('vmName'),'-osdisk.vhd')]"
-            },
-            "caching": "ReadWrite",
-            "createOption": "FromImage"
           },
           "dataDisks": [
             {
