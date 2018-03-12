@@ -100,7 +100,7 @@
 
     {
       "condition": "[equals(parameters('IPAllocationMethod'), 'Static')]",
-      "apiVersion": "[variables('api-version')]",
+      "apiVersion": "2017-09-01",
       "type": "Microsoft.Network/networkInterfaces",
       "name": "[concat(parameters('vmName'),'-static')]",
       "location": "[resourceGroup().location]",
@@ -210,4 +210,4 @@
   ],
 
   "outputs": {
-}
+}}
