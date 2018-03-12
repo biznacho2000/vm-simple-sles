@@ -99,7 +99,6 @@
 
 
     {
-      "condition": "[equals(parameters('IPAllocationMethod'), 'Static')]",
       "apiVersion": "2017-09-01",
       "type": "Microsoft.Network/networkInterfaces",
       "name": "[concat(parameters('vmName'),'-static')]",
