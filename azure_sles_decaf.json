@@ -58,7 +58,7 @@
     "subnetName": "Subnet",
     "publicIPAddressName": "[concat(parameters('vmName'), '-IP')]",
     "virtualNetworkName": "[concat(parameters('vmName'), '-VNET')]",
-    "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets/', variables('virtualNetworkName'), variables('subnetName'))]",
+    "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'), '/subnets/', variables('subnetName'))]",
     "scriptextensionScriptFolder": "CustomScripts",
     "scriptextensionScriptFileName": "scriptextension.sh"
   },
