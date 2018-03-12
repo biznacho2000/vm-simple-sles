@@ -8,6 +8,13 @@
         "description": "Hostname for the Virtual Machine."
       }
     },
+    "PrimaryStaticIP": {
+      "type": "string",
+      "metadata": {
+        "description": "IP Address for the HANA VM when Static IP Allocation Method has been selected"
+      },
+      "defaultValue": "10.208.20.100"
+    },
     "adminUsername": {
       "type": "string",
       "metadata": {
@@ -18,12 +25,6 @@
       "type": "securestring",
       "metadata": {
         "description": "Password for the Virtual Machine."
-      }
-    },
-    "dnsLabelPrefix": {
-      "type": "string",
-      "metadata": {
-        "description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
       }
     },
     "suseOSVersion": {
