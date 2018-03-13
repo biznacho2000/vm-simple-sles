@@ -1,0 +1,107 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "vmName": {
+      "type": "string",
+      "metadata": {
+        "description": "Hostname for the Virtual Machine."
+      }
+    },
+    "PrimaryStaticIP": {
+      "type": "string",
+      "metadata": {
+        "description": "IP Address for the HANA VM when Static IP Allocation Method has been selected"
+      },
+      "defaultValue": "10.208.20.100"
+    },
+    "adminUsername": {
+      "type": "string",
+      "metadata": {
+        "description": "User name for the Virtual Machine."
+      }
+    },
+    "adminPassword": {
+      "type": "securestring",
+      "metadata": {
+        "description": "Password for the Virtual Machine."
+      }
+    },
+    "suseOSVersion": {
+      "type": "string",
+      "defaultValue": "12-SP2",
+      "allowedValues": [
+        "12-SP2",
+        "12-SP3"
+      ],
+      "metadata": {
+        "description": "The SLES version for the VM. This will pick the latest available image of this given SLES version."
+      }
+    },
+    "vmsize": {
+      "allowedValues": [
+        "Standard_GS5",
+        "Standard_M64s",
+        "Standard_M64ms",
+        "Standard_M128s",
+        "Standard_M128ms",
+        "Standard_E16s_v3",
+        "Standard_E32s_v3",
+        "Standard_E64s_v3"
+      ],
+      "type": "string"
+    },
+    "virtualNetworkName": {
+      "type": "string"
+    },
+    "SubnetName": {
+      "type": "string"
+    }
+  },
+  "variables": {
+    "storageAccountName": "[concat('slesvm', uniquestring(resourceGroup().id))]",
+    "nicName": "[concat(parameters('vmName'), '-static')]",
+    "subnetName": "[parameters('SubnetName')]",
+    "virtualNetworkName": "[parameters('virtualNetworkName')]",
+    "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]"    
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Storage/storageAccounts",
+      "apiVersion": "2017-06-01",
+      "name": "[variables('storageAccountName')]",
+      "location": "[resourceGroup().location]",
+      "sku": {
+        "name": "Standard_LRS"
+      },
+      "kind": "Storage"
+    },
+    {
+      "apiVersion": "2017-09-01",
+      "type": "Microsoft.Network/networkInterfaces",
+      "name": "[concat(parameters('vmName'),'-static')]",
+      "location": "[resourceGroup().location]",      
+      "properties": {
+        "ipConfigurations": [
+          {
+            "name": "ipconfig1",
+            "properties": {
+              "privateIPAllocationMethod": "Static",
+              "privateIPAddress": "[parameters('PrimaryStaticIP')]",
+              "subnet": {
+                "id": "[variables('subnetRef')]"
+              }
+            }
+          }
+        ],
+        "dnsSettings": {
+          "dnsServers": []
+        },
+        "enableIPForwarding": false        
+      }
+    }
+  ],
+  "outputs": {
+
+  }
+}
