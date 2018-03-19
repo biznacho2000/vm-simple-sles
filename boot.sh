@@ -73,10 +73,14 @@ chmod 1777 /tmp
 
 
 echo "write to fstab start" >> /tmp/parameter.txt
-echo "/dev/mapper/vg_system-lv_home /home ext4 defaults,nofail 0 0" >> /etc/fstab
-echo "/dev/mapper/vg_system-lv_tmp /tmp ext4 defaults,nofail 0 0" >> /etc/fstab
-echo "/dev/mapper/vg_system-lv_opt /opt ext4 defaults,nofail 0 0" >> /etc/fstab
-echo "/dev/mapper/vg_system-lv_var /var ext4 defaults,nofail 0 0" >> /etc/fstab
+uuid1="$(blkid | grep lv_var | sed -e s/UUID=\"// | awk -F\" '{print $1}' | cut -d " " -f2)" 
+uuid2="$(blkid | grep lv_home | sed -e s/UUID=\"// | awk -F\" '{print $1}' | cut -d " " -f2)"
+uuid3="$(blkid | grep lv_tmp | sed -e s/UUID=\"// | awk -F\" '{print $1}' | cut -d " " -f2)"
+uuid4="$(blkid | grep lv_opt | sed -e s/UUID=\"// | awk -F\" '{print $1}' | cut -d " " -f2)"
+echo "UUID=$uuid1 /var ext4 nobarrier,nofail 0 0" >> /etc/fstab
+echo "UUID=$uuid2 /home ext4 nobarrier,nofail 0 0" >> /etc/fstab
+echo "UUID=$uuid3 /tmp ext4 nobarrier,nofail 0 0" >> /etc/fstab
+echo "UUID=$uuid4 /opt ext4 nobarrier,nofail 0 0" >> /etc/fstab
 echo "write to fstab end" >> /tmp/parameter.txt
 
 echo "final reboot to reenable boot.ini and services"
