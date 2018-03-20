@@ -16,12 +16,22 @@ cp -f /etc/waagent.conf.new /etc/waagent.conf
 echo "logicalvols start" > /usr/local/buildscript/parameter.txt
   bootdisk="$(df | grep boot | cut -c6,7,8)"
   number="$(lsscsi [*] 0 0 0| grep -v sr0| grep -v $bootdisk| cut -c2)"
-  vg_system="$(lsscsi $number 0 0 0 | grep -o '.\{9\}$')"
+  vg_system="$(lsscsi $number 0 0 0 | grep -o '.\{9\}$' | cut -c 1-8)"
+# parted to create 2 128gb partitions
+
+parted -s $vg_system mkpart primary 0GB 100GB
+parted -s $vg_system mkpart primary 101GB 201GB
+
+# pvcreate on both new paritions
+
+
   # vg_infraagentlun="$(lsscsi $number 0 0 3 | grep -o '.\{9\}$')"
   # pvcreate $vg_infraagentlun
-  pvcreate $vg_system
+  pvcreate $vg_system'1'
+  pvcreate $vg_system'2'
   # vgcreate vg_infraagent $vg_infraagentlun
-  vgcreate vg_system $vg_system
+  vgcreate vg_system $vg_system'1'
+  vgcreate vg_infraagent $vg_system'2'
   lvcreate -L 4G -n lv_var vg_system
   lvcreate -L 4G -n lv_home vg_system
   lvcreate -L 8G -n lv_tmp vg_system
