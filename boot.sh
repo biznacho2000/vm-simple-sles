@@ -19,8 +19,8 @@ echo "logicalvols start" > /usr/local/buildscript/parameter.txt
   vg_system="$(lsscsi $number 0 0 0 | grep -o '.\{9\}$' | cut -c 1-8)"
 # parted to create 2 128gb partitions
 
-parted -s $vg_system mkpart primary 0GB 100GB
-parted -s $vg_system mkpart primary 101GB 201GB
+parted -s $vg_system mkpart primary 0GB 128GB
+parted -s $vg_system mkpart primary 129GB 257GB
 
 # pvcreate on both new paritions
 
