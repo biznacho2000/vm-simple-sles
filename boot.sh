@@ -63,7 +63,6 @@ mount -t ext4 /dev/vg_system/lv_opt /opt
 
 sleep 5
 
-mkdir -p /hana/data/sapbits
 echo "mounthanashared end" >> /usr/local/buildscript/parameter.txt
 #
 #data moves
