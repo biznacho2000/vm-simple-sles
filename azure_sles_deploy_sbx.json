@@ -214,7 +214,7 @@
               "fileUris": [
                 "https://raw.githubusercontent.com/shortkidd610/vm-simple-sles/master/azureos_sbx.sh"
               ],
-              "commandToExecute": "test.sh"
+              "commandToExecute": "sh azureos_sbx.sh"
             }
           }
         }
