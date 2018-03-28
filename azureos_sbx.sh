@@ -29,7 +29,7 @@ echo "update boot.ini"
 mv /etc/rc.d/boot.local /etc/rc.d/boot.local.orig
 mkdir /usr/local/buildscript
 cd /usr/local/buildscript
-/usr/bin/wget --quiet --no-check-certificate "http://github.com/shortkidd610/vm-simple-sles/boot_sbx.sh"
+/usr/bin/wget --quiet --no-check-certificate "https://raw.githubusercontent.com/shortkidd610/vm-simple-sles/master/boot_sbx.sh"
 echo '#!/bin/sh' > /etc/rc.d/boot.local
 echo "sh /usr/local/buildscript/boot_sbx.sh >> /usr/local/buildscript/boot_sbx.sh.log 2>&1" >> /etc/rc.d/boot.local
 chmod 744 /etc/rc.d/boot.local
