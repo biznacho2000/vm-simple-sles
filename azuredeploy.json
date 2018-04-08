@@ -28,7 +28,7 @@
     },
     "suseOSVersion": {
       "type": "string",
-      "defaultValue": "12-SP2",
+      "defaultValue": "12-SP3",
       "allowedValues": [
         "12-SP2",
         "12-SP3"
@@ -155,7 +155,7 @@
         "storageProfile": {
           "imageReference": {
             "publisher": "SUSE",
-            "offer": "SLES-SAP",
+            "offer": "SLES-SAP-BYOS",
             "sku": "[parameters('suseOSVersion')]",
             "version": "2018.01.04"
           },
@@ -223,7 +223,7 @@
       "autoUpgradeMinorVersion": true,
       "settings": {
         "fileUris": [
-          "https://raw.githubusercontent.com/shortkidd610/vm-simple-sles/master/azureos.sh"
+          "https://raw.githubusercontent.com/biznacho2000/vm-simple-sles/master/azureos.sh"
         ],
         "commandToExecute": "['sh azureos.sh']"
       }
