@@ -84,9 +84,9 @@ mkdir /var/tmp
 mkdir /home
 mkdir /tmp
 
-mount -t ext4 /dev/vg_system/lv_vartmp /var/tmp
-mount -t ext4 /dev/vg_system/lv_home /home
-mount -t ext4 /dev/vg_system/lv_tmp /tmp
+mount -t ext4 /dev/vg_system/lv_vartmp /var/tmp -o nodev,nosuid,noexec
+mount -t ext4 /dev/vg_system/lv_home /home -o nodev
+mount -t ext4 /dev/vg_system/lv_tmp /tmp -o nodev,nosuid,noexec
 
 sleep 5
 
