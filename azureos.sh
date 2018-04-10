@@ -4,8 +4,7 @@ number="$(lsscsi [*] 0 0 0| grep -v sr0| grep -v $bootdisk| cut -c2)"
 vg_system="$(lsscsi $number 0 0 0 | grep -o '.\{9\}$' | cut -c 1-8)"
 
 parted -s $vg_system mklabel msdos
-parted -s $vg_system mkpart primary 0GB 128GB
-parted -s $vg_system mkpart primary 129GB 257GB
+parted -s $vg_system mkpart primary 0GB 499GB
 
   pvcreate $vg_system'1'
   vgcreate vg_system $vg_system'1'
